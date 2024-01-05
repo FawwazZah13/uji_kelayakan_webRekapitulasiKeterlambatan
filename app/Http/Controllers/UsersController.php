@@ -69,12 +69,11 @@ public function storeUsers(Request $request)
         'role' => 'required',
     ]);
 
-    $password = Str::slug(Str::words($request->name, 3, '')) . Str::slug(Str::words($request->email, 3, ''));
 
     users::create([
         'name' => $request->name,
         'email' => $request->email,
-        'password' => Hash::make($password),
+        'password' =>Hash::make($request->password),
         'role' => $request->role,
     ]);
 
